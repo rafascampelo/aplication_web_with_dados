@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Usuários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class=" bg-red-100 flex items-center justify-center ">
+    <h1 class=" text-3xl font-bold text-brown-400 mt-10"> Bem-vindo ao sistemas de Usuários</h1>
+<h1> Lista de Usuários</h1>
+<ul>
+    {% for user in users %}
+    <li>{{ user.name }} - {{user.email}} - {{user.telefone}}</li>
+    {%endfor%}
+</ul>
+
+<h2> Adicionando users </h2>
+<form action="/add" method="post">
+    <input typr="text" name="name" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <input type="text" name="telefone" placeholder="Telefone" required>
+    <button type="submit">Adicionar</button>
+</form>
+</body>
+</html>
