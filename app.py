@@ -1,46 +1,57 @@
-from flask import Flask, render_template, request, redirect
-import sqlite3
-
+from flask import Flask, render_template, request, jsonify
+import json
+import os
 app = Flask(__name__)
 
-# função para conectar o bd
+JSON_FILE = "banco.json"
+
+# função para carregar usuarios do JSON
 
 
-def get_db_connection():
-    conn = sqlite3.connect('banco.db')
-    conn.row_factory = sqlite3.Row  # retorna os dados como dicionário
-    return conn
+def ler_usuarios():
+    if not os.path.exists(JSON_FILE):
+        return []
+    try:
+        with open(JSON_FILE, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except json.JSONDecodeError:
+        return []
 
-# rota para exibir os usuários
-
-
-@app.route('/')
-def home():
-    conn = get_db_connection()
-    users = conn.execute('SELECT * FROM users').fetchall()
-    conn.close()
-    return render_template('index.html', users=users)
-
-# rota para dicionar usuarios
+# Função para salvar usuários no JSON
 
 
-@app.route('/add', methods=['POST'])
-def add_user():
-    name = request.form['name']
-    email = request.form['email']
-    senha = request.form['senha']
-    telefone = request.form['telefone']
-    if not telefone.isdigit():
-        return "ERRO: O telefone deve conter apenas números."
+def salvar_usuarios(usuarios):
+    with open(JSON_FILE, "w", encoding="utf-8") as file:
+        json.dump(usuarios, file, indent=4, ensure_ascii=False)
 
-    conn = get_db_connection()
-    conn.execute('INSERT INTO users (name, email, senha, telefone) VALUES (?, ?, ?, ?)',
-                 (name, email, senha, int(telefone)))
-    conn.commit()
-    conn.close()
-
-    return redirect('/')
+# rota para exibir os usuarios na pg html
 
 
-if __name__ == '__main__':
+@app.route("/")
+def index():
+    users = ler_usuarios()
+    return render_template("index.html", users=users)
+
+# rota para adicionar um usuario pelo forms
+
+
+@app.route("/add", methods=["POST"])
+def adicionar_usuarios():
+    data = request.form
+    usuarios = ler_usuarios()
+    novo_id = max([user["id"] for user in usuarios], default=0) + 1
+
+    novo_usuario = {
+        "id": novo_id,
+        "name": data["name"],
+        "email": data["email"],
+        "telefone": data["telefone"],
+        "senha": data["senha"]
+    }
+
+    usuarios.append(novo_usuario)
+    salvar_usuarios(usuarios)
+
+
+if __name__ == "__main__":
     app.run(debug=True)

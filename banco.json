@@ -1,0 +1,58 @@
+[
+    {
+        "id": 2,
+        "name": "Carlos",
+        "email": "carlos@gmail.com",
+        "telefone": "11912345678",
+        "senha": "senha123"
+    },
+    {
+        "id": 3,
+        "name": "ana",
+        "email": "ana@gmail",
+        "senha": "senhaforte",
+        "telefone": "11989879999"
+    },
+    {
+        "id": 4,
+        "name": "rafa",
+        "email": "rafa@outo",
+        "telefone": "paparazi",
+        "senha": "senha"
+    },
+    {
+        "id": 5,
+        "name": "rafa",
+        "email": "rafa@outo",
+        "telefone": "paparazi",
+        "senha": "senha"
+    },
+    {
+        "id": 6,
+        "name": "joao",
+        "email": "oloko@hai",
+        "telefone": "119304050607",
+        "senha": "2020"
+    },
+    {
+        "id": 7,
+        "name": "joao",
+        "email": "oloko@hai",
+        "telefone": "119304050607",
+        "senha": "2020"
+    },
+    {
+        "id": 8,
+        "name": "amanda",
+        "email": "amandafofi@email",
+        "telefone": "11951872173",
+        "senha": "808089900"
+    },
+    {
+        "id": 9,
+        "name": "amanda",
+        "email": "amandafofi@email",
+        "telefone": "11951872173",
+        "senha": "808089900"
+    }
+]
