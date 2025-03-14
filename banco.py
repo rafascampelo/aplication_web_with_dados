@@ -1,6 +1,6 @@
 import json
 import os
-
+import re
 # função para ler usuarios JSON
 
 
@@ -22,26 +22,20 @@ def salvar_usuarios(usuarios):
 # função adicionar usuarios
 def adicionar_usuarios(name, email, telefone, senha):
     usuarios = ler_usuarios()
-# 🚨 1. Verifica se o nome está vazio
+
     if not name.strip():
-        print("Erro: O nome não pode estar vazio!")
-        return
+        return {"erro": "O nome não pode estar vazio!"}
 
-    # 🚨 2. Valida o formato do e-mail usando REGEX
     email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    if not re.match(email_regex, email):  # type: ignore
-        print("Erro: E-mail inválido!")
-        return
+    if not re.match(email_regex, email):
+        return {"erro": "E-mail inválido!"}
 
-    # 🚨 3. Verifica se o telefone tem pelo menos 10 dígitos
-    if len(telefone) < 10:
-        print("Erro: O telefone deve ter pelo menos 10 dígitos!")
-        return
-
-    # 🚨 4. Verifica se a senha tem pelo menos 8 caracteres
-    if len(senha) < 8:
-        print("Erro: A senha deve ter pelo menos 8 caracteres!")
-        return
+    telefone = re.sub(r"\D", "", telefone)  # Remove tudo que não for número
+    if len(telefone) <= 12:
+        return {"erro": "algo ta torto"}
+    senha = re.sub(r"\s", "", senha)
+    if len(senha) <= 8:
+        return {"erro": "A senha deve ter pelo menos 8 caracteres!"}
 
     novo_id = max([user["id"] for user in usuarios], default=0) + 1
     novo_usuario = {
