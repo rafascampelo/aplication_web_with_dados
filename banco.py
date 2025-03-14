@@ -29,7 +29,7 @@ def adicionar_usuarios(name, email, telefone, senha):
 
     # 🚨 2. Valida o formato do e-mail usando REGEX
     email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    if not re.match(email_regex, email):
+    if not re.match(email_regex, email):  # type: ignore
         print("Erro: E-mail inválido!")
         return
 
