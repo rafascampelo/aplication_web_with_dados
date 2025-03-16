@@ -22,21 +22,6 @@ def salvar_usuarios(usuarios):
 # função adicionar usuarios
 def adicionar_usuarios(name, email, telefone, senha):
     usuarios = ler_usuarios()
-
-    if not name.strip():
-        return {"erro": "O nome não pode estar vazio!"}
-
-    email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    if not re.match(email_regex, email):
-        return {"erro": "E-mail inválido!"}
-
-    telefone = re.sub(r"\D", "", telefone)  # Remove tudo que não for número
-    if len(telefone) <= 12:
-        return {"erro": "algo ta torto"}
-    senha = re.sub(r"\s", "", senha)
-    if len(senha) <= 8:
-        return {"erro": "A senha deve ter pelo menos 8 caracteres!"}
-
     novo_id = max([user["id"] for user in usuarios], default=0) + 1
     novo_usuario = {
         "id": novo_id,

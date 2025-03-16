@@ -208,5 +208,26 @@
         "email": "rafaela@outlook.com",
         "senha": "404050503",
         "telefone": "5511989884455"
+    },
+    {
+        "id": 32,
+        "name": "jade",
+        "email": "jadequeen@gmail.com",
+        "senha": "eu am",
+        "telefone": "11932269513"
+    },
+    {
+        "id": 33,
+        "name": "jade",
+        "email": "jadequeen@gmail.com",
+        "senha": "eu am",
+        "telefone": "11932269513"
+    },
+    {
+        "id": 34,
+        "name": "jade",
+        "email": "jadequeen@gmail.com",
+        "senha": "eu am",
+        "telefone": "11932269513"
     }
 ]
