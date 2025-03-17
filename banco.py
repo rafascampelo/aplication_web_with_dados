@@ -1,6 +1,7 @@
 import json
 import os
 import re
+
 # função para ler usuarios JSON
 
 
@@ -21,8 +22,15 @@ def salvar_usuarios(usuarios):
 
 # função adicionar usuarios
 def adicionar_usuarios(name, email, telefone, senha):
-    usuarios = ler_usuarios()
-    novo_id = max([user["id"] for user in usuarios], default=0) + 1
+    # Se `ler_usuarios()` retornar None, usa uma lista vazia
+    usuarios = ler_usuarios() or []
+
+    # Verifica se o e-mail já existe
+    if any(user["email"] == email for user in usuarios):
+        return {"erro": "E-mail já cadastrado!"}
+
+    novo_id = max([user["id"] for user in usuarios], default=0) + \
+        1  # Garante que o ID seja único
     novo_usuario = {
         "id": novo_id,
         "name": name,
@@ -30,9 +38,13 @@ def adicionar_usuarios(name, email, telefone, senha):
         "senha": senha,
         "telefone": telefone
     }
+
     usuarios.append(novo_usuario)
-    salvar_usuarios(usuarios)
-    print(f"usuario {name} adicionado com sucesso!")
+    salvar_usuarios(usuarios)  # Salva no JSON
+
+    return novo_usuario  # Retorna os dados do novo usuário
+
+# deleta usuarios do json
 
 
 def deletar_usuarios(user_id):
@@ -51,10 +63,3 @@ def listar_usuarios():
         return
     for user in usuarios:
         print(f"{user['id']} - {user['name']} ({user['email']})")
-
-# teste das funções
-# if __name__ == "__main__":
- #   adicionar_usuarios("ana", "ana@gmail", "11989879999", "senhaforte")
-  #  listar_usuarios()
-   # deletar_usuarios()
-    # listar_usuarios()
