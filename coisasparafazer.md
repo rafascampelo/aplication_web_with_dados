@@ -1,7 +1,0 @@
-- arrumar rotas e def (arrumeeei)
-- adicionar o del (arrumei)
-- arrumar as restrições em html (arrumei)
-- arrumar as restrições do bd
-- fazer a tela não subir dps de carregar
-- fazer o botão alinhas na direita
-- tentar fazer alter em perfis cadastrados

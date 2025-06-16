@@ -1,57 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema de Usuários</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @layer utilities {
-            .bg-rosa-claro { background-color: #f8e1e7; }
-            .shadow-chumbo { box-shadow: 4px 4px 10px rgba(54, 54, 54, 0.4); }
+      @layer utilities {
+        .bg-rosa-claro {
+          background-color: #f8e1e7;
         }
+        .shadow-chumbo {
+          box-shadow: 4px 4px 10px rgba(54, 54, 54, 0.4);
+        }
+      }
     </style>
-</head>
-<body class="flex items-center justify-center min-h-screen w-full bg-rosa-claro p-4">
-    
-    <div class="w-full max-w-3xl bg-white shadow-chumbo rounded-lg flex flex-col md:flex-row overflow-hidden">
-         
-        <div class="w-full md:w-1/2 p-4 flex flex-col justify-center gap-4"> 
-            <h2 class="text-2xl text-center p-2 font-bold text-pink-600 mb-4">Cadastre-se</h2>
-            <form action="/add" method="post" class="flex flex-col justify-center items-center gap-4">
-                <input type="text" id="name" name="name" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras são permitidas" placeholder="Nome" class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500">
-                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Digite um e-mail válido (ex: exemplo@email.com)" placeholder="Email" class="p-3 border border-pink-500  w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500">
-                <input type="password" id="senha" name="senha" required maxlength="8" title="A senha deve ter no mínimo 8 caracteres" placeholder="Senha" class="p-3 border border-pink-500  w-80 rounded-full  focus:ring-4 focus:outline-none focus:ring-pink-500">
-                <input type="tel" id="telefone" name="telefone" required pattern="\d{11,14}" title="Digite um número válido com 10 ou 11 dígitos" placeholder="Telefone" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')" class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500">
-                    <button type="submit" class="bg-pink-600 text-white p-3 rounded-full w-32 hover:bg-pink-500">
-                        Adicionar
-                    </button>
-                </form>
-        </div>
-        
+  </head>
+  <body
+    class="flex items-center justify-center min-h-screen w-full bg-rosa-claro p-4"
+  >
+    <div
+      class="w-full max-w-3xl bg-white shadow-chumbo rounded-lg flex flex-col md:flex-row overflow-hidden"
+    >
+      <div class="w-full md:w-1/2 p-4 flex flex-col justify-center gap-4">
+        <h2 class="text-2xl text-center p-2 font-bold text-pink-600 mb-4">
+          Cadastre-se
+        </h2>
+        <form
+          action="/add"
+          method="post"
+          class="flex flex-col justify-center items-center gap-4"
+        >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            pattern="[A-Za-zÀ-ÿ\s]+"
+            title="Apenas letras são permitidas"
+            placeholder="Nome"
+            class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500"
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            title="Digite um e-mail válido (ex: exemplo@email.com)"
+            placeholder="Email"
+            class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500"
+          />
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            minlength="8"
+            required
+            title="A senha deve ter no mínimo 8 caracteres"
+            placeholder="Senha"
+            class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500"
+          />
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            required
+            pattern="\d{11,14}"
+            title="Digite um número válido com 10 ou 11 dígitos"
+            placeholder="Telefone"
+            inputmode="numeric"
+            oninput="this.value = this.value.replace(/\D/g, '')"
+            class="p-3 border border-pink-500 w-80 rounded-full focus:ring-4 focus:outline-none focus:ring-pink-500"
+          />
+          <button
+            type="submit"
+            class="bg-pink-600 text-white p-3 rounded-full w-32 hover:bg-pink-500"
+          >
+            Adicionar
+          </button>
+        </form>
+      </div>
 
-<div class="w-full md:w-1/2 p-6 bg-gray-100">
-     <h3 class="text-2xl text-center font-bold text-pink-600 pb-10">Lista de Usuários</h3>
+      <div class="w-full md:w-1/2 p-6 bg-gray-100">
+        <h3 class="text-2xl text-center font-bold text-pink-600 pb-10">
+          Lista de Usuários
+        </h3>
         <div class="overflow-y-auto max-h-64">
-            <ul class="flex flex-col gap-2">
-                {% for user in users %}
-                <li class="bg-white p-3 flex flex-col rounded-md border-l-4 border-pink-400 shadow-sm">
-                    <span class="text-lg  text-pink-600">Nome: {{ user.name }}</span>
-                    <span class="text-gray-600">Email: {{ user.email }}</span>
-                    <span class="text-gray-500">Telefone: {{ user.telefone }}</span>
-                    <span class="text-gray-500">Senha: {{ user.senha }}</span>
-                    <form action="/delete/{{ user.id }}" method="post" class="ml-auto mb-auto">
-                        <button type="submit" class="bg-black font-semibold rounded-full text-white  w-8 h-8 hover:bg-red-600">
-                            X
-                        </button>
-                    </form>
-                </li>
-               
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    </div>
+          <ul class="flex flex-col gap-2">
+            {% for user in users %}
+            <li
+              class="bg-white p-3 flex flex-col rounded-md border-l-4 border-pink-400 shadow-sm"
+            >
+              <span class="text-lg text-pink-600">Nome: {{ user.name }}</span>
+              <span class="text-gray-600">Email: {{ user.email }}</span>
+              <span class="text-gray-500">Telefone: {{ user.telefone }}</span>
+              <span class="text-gray-500">Senha: {{ user.senha }}</span>
+              <form
+                action="/delete/{{ user.id }}"
+                method="post"
+                class="ml-auto mb-auto"
+              >
+                <button
+                  type="submit"
+                  class="bg-black font-semibold rounded-full text-white w-8 h-8 hover:bg-red-600"
+                >
+                  X
+                </button>
+              </form>
+            </li>
 
-</body>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
