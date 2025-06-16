@@ -1,26 +1,21 @@
-# py_bd
+# 🐍 py_bd
 
-projeto simples com python e bd para web
+Projeto simples com Python + Flask que simula um banco de dados usando JSON.  
+Permite **criar, listar, atualizar e deletar usuários** — um CRUD completo 100% em Python puro, focado em aprendizado de back-end web.
 
-vá até a pasta do projeto e
-para ativar o ambiente virtual coloque o codigo no lugar de preferência
+## 🚀 Tecnologias Usadas
 
-CMD:
-venv\Scripts\activate
+- [Python 3.x](https://www.python.org/)
+- [Flask](https://flask.palletsprojects.com/)
+- Armazenamento em arquivos `.json`
+- HTML básico para as views
 
-PowerShell:
-venv\Scripts\Activate.ps1
+---
 
-Linux / macOS (Terminal):
-Navegue até a pasta do seu projeto:
-cd caminho/do/seu/projeto
+## ⚙️ Como rodar o projeto localmente
 
-Ative o ambiente virtual:
-source venv/bin/activate
+### 1. Clone o repositório
 
-para desativar o ambiente virtual: deactivate
-
-para parar o servidor: crtl + C
-
-RODAR O SERVIDOR FLASK\*\*\*
-python app.py
+```bash
+git clone https://github.com/seu-usuario/py_bd.git
+```
